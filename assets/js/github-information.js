@@ -22,8 +22,8 @@ function repoInformationHTML(repos) {
 
     var listItemsHTML = repos.map(function(repo) {
         return `<li>
-                    <a href="${repo.html_url}" target="blank">${repo.name}</a>
-                </li>`
+                    <a href="${repo.html_url}" target="_blank">${repo.name}</a>
+                </li>`;
     });
 
     return `<div class="clearfix repo-list">
@@ -31,12 +31,15 @@ function repoInformationHTML(repos) {
                     <strong>Repo List:</strong>
                 </p>
                 <ul>
-                    ${listItemsHTML.join("/n")};
+                    ${listItemsHTML.join("\n")}
                 </ul>
-            </div>`
+            </div>`;
 }
 
 function fetchGitHubInformation(event) {
+
+    $('#gh-user-data').html('');
+    $('#gh-repo-data').html('');
 
     var username = $("#gh-username").val();
     if (!username) {
@@ -70,3 +73,5 @@ function fetchGitHubInformation(event) {
             }
         });
 }
+
+$(document).ready(fetchGitHubInformation);
